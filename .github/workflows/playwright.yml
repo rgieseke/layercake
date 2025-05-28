@@ -1,7 +1,7 @@
 name: Playwright Tests
 on:
   push:
-    branches: ["*"]
+    branches: [main]
   pull_request:
     branches: ["*"]
 jobs:
@@ -21,6 +21,7 @@ jobs:
         run: |
           if [ -z "$(find test/e2e/chart-screenshots.spec.js-snapshots -name '*.png' 2>/dev/null)" ]; then
             echo "Creating snapshots"
+            npm run pretest:playwright
             npm run test:init:snapshots
             git config user.name 'github-actions[bot]'
             git config user.email 'github-actions[bot]@users.noreply.github.com'
