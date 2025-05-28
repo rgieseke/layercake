@@ -10,24 +10,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
       - uses: actions/setup-node@v4
         with:
           node-version: 22
       - name: Install dependencies
         run: npm ci
       - name: Create screenshots if missing
-        with:
-          ref: ${{ github.head_ref }}
         run: |
           if [ -z "$(find test/e2e/chart-screenshots.spec.js-snapshots -name '*.png' 2>/dev/null)" ]; then
             echo "Creating snapshots"
             npm run test:init:snapshots
-            git config  user.name 'github-actions[bot]'
-            git config  user.email '<>'
+            git config user.name 'github-actions[bot]'
+            git config user.email 'github-actions[bot]@users.noreply.github.com'
             git add test/e2e/chart-screenshots.spec.js-snapshots/*.png || true
             git commit -m "Update chart screenshots" || true
             git push || true
-          fi- name: Run Playwright tests
+          fi- 
+        name: Run Playwright tests
         run: npm run test:playwright
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
