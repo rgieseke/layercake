@@ -27,8 +27,8 @@ jobs:
             git add test/e2e/chart-screenshots.spec.js-snapshots/*.png || true
             git commit -m "Update chart screenshots" || true
             git push || true
-          fi- 
-        name: Run Playwright tests
+          fi
+      - name: Run Playwright tests
         run: npm run test:playwright
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
