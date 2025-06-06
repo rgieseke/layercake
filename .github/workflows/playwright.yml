@@ -32,6 +32,7 @@ jobs:
       - name: Run Playwright tests
         run: npm run test:playwright
       - uses: actions/upload-artifact@v4
+        id: artifact-upload
         if: ${{ !cancelled() }}
         with:
           name: playwright-report
