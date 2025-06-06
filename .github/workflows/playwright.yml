@@ -30,7 +30,7 @@ jobs:
             git push || true
           fi
       - name: Run Playwright tests
-        run: npm run test:playwright | tee output.log
+        run: npm run test:playwright
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
