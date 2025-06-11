@@ -9,7 +9,7 @@
 <div class="chart-container">
 	<LayerCake {data}>
 		<Svg>
-			<Sankey colorNodes={d => '#00bbff'} colorLinks={d => '#00bbff35'} />
+			<Sankey colorNodes={d => '#000'} colorLinks={d => '#000'} />
 		</Svg>
 	</LayerCake>
 </div>
