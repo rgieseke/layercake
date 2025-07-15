@@ -55,20 +55,3 @@ jobs:
           git add -A
           git commit -m "Update Playwright snapshots"
           git push origin ${{ github.ref_name }}
-
-      - name: Comment PR with changes
-        uses: thollander/actions-comment-pull-request@v3
-        if: steps.changed_files.outputs.files != ''
-        with:
-          message: |
-            ### Playwright test snapshots have been updated.
-
-            Updated files:
-            ${{ steps.changed_files.outputs.files }}
-
-      - name: Comment PR when there are no changes
-        uses: thollander/actions-comment-pull-request@v3
-        if: steps.changed_files.outputs.files == ''
-        with:
-          message: |
-            ### No Playwright test snapshots changed.
