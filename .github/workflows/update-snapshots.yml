@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  update-screenshots:
+  update-snapshots:
     runs-on: ubuntu-24.04
     container:
       # https://playwright.dev/docs/docker
@@ -52,6 +52,6 @@ jobs:
       - name: Commit and push changes
         if: steps.changed_files.outputs.files != ''
         run: |
-          git add -A
+          git add -A test/e2e/**/*.png
           git commit -m "Update Playwright snapshots"
           git push origin ${{ github.ref_name }}
