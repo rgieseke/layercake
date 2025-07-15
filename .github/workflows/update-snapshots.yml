@@ -46,7 +46,7 @@ jobs:
       - name: Get changed files
         id: changed_files
         run: |
-          files=$(git status --porcelain | awk '{print $2}')
+          files=$(git status --porcelain **/*.png | awk '{print $2}')
           echo "files=$files" >> $GITHUB_OUTPUT
 
       - name: Commit and push changes
